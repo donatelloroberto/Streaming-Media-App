@@ -1,0 +1,76 @@
+{
+  "featured": [
+    {
+      "id": "1",
+      "title": "Featured Movie 1",
+      "description": "An amazing featured movie with great cinematography",
+      "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+      "thumbnailUrl": "https://via.placeholder.com/300x200/FF6B6B/FFFFFF?text=Featured+1",
+      "category": "Featured",
+      "duration": "2h 15m",
+      "isFavorite": false,
+      "rating": 4.5
+    },
+    {
+      "id": "2",
+      "title": "Featured Movie 2",
+      "description": "Another great featured movie with excellent story",
+      "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4",
+      "thumbnailUrl": "https://via.placeholder.com/300x200/4ECDC4/FFFFFF?text=Featured+2",
+      "category": "Featured",
+      "duration": "1h 45m",
+      "isFavorite": false,
+      "rating": 4.2
+    }
+  ],
+  "movies": [
+    {
+      "id": "3",
+      "title": "Action Movie",
+      "description": "High-octane action thriller with amazing stunts",
+      "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+      "thumbnailUrl": "https://via.placeholder.com/300x200/45B7D1/FFFFFF?text=Action",
+      "category": "Movies",
+      "duration": "2h 30m",
+      "isFavorite": false,
+      "rating": 4.0
+    },
+    {
+      "id": "4",
+      "title": "Comedy Movie",
+      "description": "Laugh-out-loud comedy with great humor",
+      "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4",
+      "thumbnailUrl": "https://via.placeholder.com/300x200/96CEB4/FFFFFF?text=Comedy",
+      "category": "Movies",
+      "duration": "1h 30m",
+      "isFavorite": false,
+      "rating": 3.8
+    }
+  ],
+  "tv_shows": [
+    {
+      "id": "5",
+      "title": "Drama Series",
+      "description": "Compelling drama series with deep characters",
+      "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
+      "thumbnailUrl": "https://via.placeholder.com/300x200/FFEAA7/FFFFFF?text=Drama",
+      "category": "TV Shows",
+      "duration": "45m",
+      "isFavorite": false,
+      "rating": 4.3
+    }
+  ],
+  "documentaries": [
+    {
+      "id": "6",
+      "title": "Nature Documentary",
+      "description": "Beautiful nature documentary showcasing wildlife",
+      "videoUrl": "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4",
+      "thumbnailUrl": "https://via.placeholder.com/300x200/DDA0DD/FFFFFF?text=Nature",
+      "category": "Documentaries",
+      "duration": "1h 20m",
+      "isFavorite": false,
+      "rating": 4.7
+    }
+  ]
+}

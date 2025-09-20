@@ -22,33 +22,24 @@ class MediaPlaybackService : MediaSessionService() {
     
     private var mediaSession: MediaSession? = null
     private var exoPlayer: ExoPlayer? = null
+    private lateinit var notificationHelper: NotificationHelper
     
     companion object {
         const val CHANNEL_ID = "media_playback_channel"
         const val NOTIFICATION_ID = 1
         const val MEDIA_ITEM = "media_item"
+        
+        const val ACTION_PLAY = "com.streamingmediaapp.ACTION_PLAY"
+        const val ACTION_PAUSE = "com.streamingmediaapp.ACTION_PAUSE"
+        const val ACTION_STOP = "com.streamingmediaapp.ACTION_STOP"
     }
     
     override fun onCreate() {
         super.onCreate()
-        createNotificationChannel()
+        notificationHelper = NotificationHelper(this)
+        notificationHelper.createNotificationChannel()
         initializePlayer()
         initializeMediaSession()
-    }
-    
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                CHANNEL_ID,
-                "Media Playback",
-                NotificationManager.IMPORTANCE_LOW
-            ).apply {
-                description = "Media playback notifications"
-            }
-            
-            val notificationManager = getSystemService(NotificationManager::class.java)
-            notificationManager.createNotificationChannel(channel)
-        }
     }
     
     private fun initializePlayer() {
@@ -56,7 +47,9 @@ class MediaPlaybackService : MediaSessionService() {
     }
     
     private fun initializeMediaSession() {
-        mediaSession = MediaSession.Builder(this, exoPlayer!!).build()
+        mediaSession = MediaSession.Builder(this, exoPlayer!!)
+            .setCallback(MediaSessionCallback())
+            .build()
     }
     
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession? {
@@ -64,11 +57,25 @@ class MediaPlaybackService : MediaSessionService() {
     }
     
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        val mediaItem = intent?.getParcelableExtra<MediaItem>(MEDIA_ITEM)
-        
-        if (mediaItem != null) {
-            startForeground(NOTIFICATION_ID, createNotification(mediaItem))
-            playMedia(mediaItem)
+        when (intent?.action) {
+            ACTION_PLAY -> {
+                exoPlayer?.play()
+            }
+            ACTION_PAUSE -> {
+                exoPlayer?.pause()
+            }
+            ACTION_STOP -> {
+                exoPlayer?.stop()
+                stopForeground(true)
+                stopSelf()
+            }
+            else -> {
+                val mediaItem = intent?.getParcelableExtra<MediaItem>(MEDIA_ITEM)
+                if (mediaItem != null) {
+                    startForeground(NOTIFICATION_ID, createNotification(mediaItem))
+                    playMedia(mediaItem)
+                }
+            }
         }
         
         return START_STICKY
